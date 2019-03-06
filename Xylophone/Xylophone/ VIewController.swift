@@ -17,11 +17,9 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
     @IBAction func notePressed(_ sender: UIButton) {
         playSound(soundFileName: soundArray[sender.tag - 1])
     }
-    
     func playSound(soundFileName: String) {
         let soundURL = Bundle.main.url(forResource: soundFileName, withExtension: "wav")!
         do {

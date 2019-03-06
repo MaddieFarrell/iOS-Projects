@@ -9,9 +9,7 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
     let ballArray = ["ball1", "ball2", "ball3", "ball4", "ball5"]
-    
     var randomBallIndex: Int = 0
     
     @IBOutlet weak var ballImage: UIImageView!
@@ -20,23 +18,15 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         updateBallImage()
     }
-    
-
     @IBAction func rollButtonPressed(_ sender: UIButton) {
-        
         updateBallImage()
     }
-    
     override func motionEnded(_ motion: UIEvent.EventSubtype, with event: UIEvent?) {
         updateBallImage()
     }
-    
     func updateBallImage() {
-        
         randomBallIndex = Int.random(in:0 ... 4)
-        
         ballImage.image = UIImage(named: ballArray[randomBallIndex])
     }
-    
 }
 
