@@ -26,29 +26,29 @@ class ViewController: UIViewController {
         let firstQuestion = allQuestions.list[0]
         questionLabel.text = firstQuestion.questionText
     }
+    
     @IBAction func answerPressed(_ sender: AnyObject) {
         if sender.tag == 1 {
             pickedAnswer = true
-        }
-        else if sender.tag == 2 {
+        } else if sender.tag == 2 {
             pickedAnswer = false
         }
         checkAnswer()
-        
         questionNumber = questionNumber + 1
         nextQuestion()
     }
+    
     func updateUI() {
         scoreLabel.text = "Score: \(score)"
         progressLabel.text = "\(questionNumber + 1) / 13"
         progressBar.frame.size.width = (view.frame.size.width / 13) *  CGFloat(questionNumber + 1)
     }
+    
     func nextQuestion() {
         if questionNumber <= 12 {
         questionLabel.text = allQuestions.list[questionNumber].questionText
         updateUI()
-        }
-        else {
+        } else {
             let alert = UIAlertController(title: "Yay", message: "You have finished the quiz! Would you like to start over?", preferredStyle: .alert)
             let restartAction = UIAlertAction(title: "restart", style: .default) { (UIAlertAction) in
                 self.startOver()
@@ -57,17 +57,17 @@ class ViewController: UIViewController {
             present(alert, animated: true, completion: nil)
         }
     }
+    
     func checkAnswer() {
-        
         let correctAnswer = allQuestions.list[questionNumber].answer
         if correctAnswer == pickedAnswer {
             ProgressHUD.showSuccess("Correct!")
             score += 1
-        }
-        else {
+        } else {
             ProgressHUD.showError("Wrong!")
         }
     }
+    
     func startOver() {
         questionNumber = 0
         nextQuestion()
